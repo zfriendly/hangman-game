@@ -2,9 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Hangman Game</title>
   </head>
-  <body></body>
+  <body>
+    <div class="game__title">Welcome to Hangman!</div>
+    <div class="image__container">
+      <div class="image">This is where the images go</div>
+    </div>
+    <div class="wrong__letters">This is where the wrong letters go</div>
+    <div class="word__box">This is where the guessing word is displayed</div>
+    <div class="word__guess">This is the input where people guess letters</div>
+    <div class="game_buttons__container">
+      This is where all the buttons are contained
+      <div class="game_buttons game_buttons__random">
+        This is the button to pick a random word from the API
+      </div>
+      <div class="game_buttons game_buttons__enter">
+        This is the input to generate your own word
+      </div>
+      <div class="game_buttons game_buttons__reset">
+        This is the button to reset the game
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
