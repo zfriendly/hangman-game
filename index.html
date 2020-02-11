@@ -5,29 +5,30 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Rye&display=swap" rel="stylesheet"> 
     <title>Hangman Game</title>
   </head>
   <body>
-    <div class="game__title">Welcome to Hangman!</div>
-    <div class="image__container">
-      <div class="image">This is where the images go</div>
-    </div>
+    <div class="game__title"><h1>Welcome to Hangman!</h1></div>
+    <div class="game__container">
+      <div class="image__container">
+          <img id="hm__images" src="images/hm_dead.png"/>
+      </div>
+      <div class="empty">EMPTY DIV</div>
     <div class="wrong__letters">This is where the wrong letters go</div>
     <div class="word__box">This is where the guessing word is displayed</div>
-    <div class="word__guess">This is the input where people guess letters</div>
+    
     <div class="game_buttons__container">
-      This is where all the buttons are contained
-      <div class="game_buttons game_buttons__random">
-        This is the button to pick a random word from the API
-      </div>
-      <div class="game_buttons game_buttons__enter">
-        This is the input to generate your own word
-      </div>
-      <div class="game_buttons game_buttons__reset">
-        This is the button to reset the game
-      </div>
+      <button class="game_buttons game_buttons__random">Play against the computer</button>
+      <button class="game_buttons game_buttons__enter">Enter Your Own Word</button>
+      <button class="game_buttons game_buttons__reset">Restart Game</button>
+    </button>
+  </div>
+  <div class="guess__container">
+    <input class="guess__letter" placeholder="Guess a letter">
+    <button class="game_buttons guess__letter__button">Submit</button>
+  </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>
