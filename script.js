@@ -3,7 +3,48 @@ let guess = [];
 let inputWord = [];
 let dictionaryWord = [];
 let imagesArr = [];
+let alphabet = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z"
+];
 
+let keyboard = document.querySelector(".keyboard");
+for (i = 0; i < alphabet.length; i++) {
+  let letter = document.createElement("div");
+  letter.classList.add("letter");
+  letter.innerText = alphabet[i];
+  letter.addEventListener("click", guessLetter);
+  keyboard.appendChild(letter);
+}
+
+function guessLetter(evt) {
+  evt.preventDefault();
+  guess.push(evt.target.innerText);
+}
 // Step 1 - Have user choose between playing against (A) dictionary API or (B) inputting their one word
 // If (A) - fetch random word from dictionary API and plug it into the inputWord array (after splitting into string)
 // If (B) - build function to take in input from prompt and push it into the inputWord array
