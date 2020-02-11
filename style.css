@@ -112,3 +112,25 @@ body {
   height: 50px;
   width: 50px;
 }
+.input_word {
+  font-size: 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-family: "Rye", cursive;
+}
+.submit_word {
+  font-size: 20px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-family: "Rye", cursive;
+}
+.word_form {
+  display: flex;
+  flex-direction: row;
+  display: none;
+}
+.word_form_toggle {
+  display: block;
+}

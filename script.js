@@ -1,8 +1,8 @@
 let wrongLetters = [];
 let guess = [];
-let inputWord = ["a", "n", "d", "r", "e", "w", "w", "k"];
+let inputWord = [];
 let imagesArr = [];
-let alphabet = [
+const alphabet = [
   "A",
   "B",
   "C",
@@ -30,6 +30,7 @@ let alphabet = [
   "Y",
   "Z"
 ];
+//For loop for making the keyboard
 let wordBox = document.querySelector(".word__box");
 let keyboard = document.querySelector(".keyboard");
 for (i = 0; i < alphabet.length; i++) {
@@ -39,17 +40,37 @@ for (i = 0; i < alphabet.length; i++) {
   letter.addEventListener("click", guessLetter);
   keyboard.appendChild(letter);
 }
-
+//Function for clicking on a letter
 function guessLetter(evt) {
   evt.preventDefault();
   guess.push(evt.target.innerText);
 }
-
-for (i = 0; i < inputWord.length; i++) {
-  let blankLetter = document.createElement("div");
-  blankLetter.classList.add("blank_style");
-  wordBox.appendChild(blankLetter);
+//For loop for creating the blanks for the entered word
+function shootBlanks() {
+  for (i = 0; i < inputWord.length; i++) {
+    let blankLetter = document.createElement("div");
+    blankLetter.classList.add("blank_style");
+    wordBox.appendChild(blankLetter);
+  }
 }
+//Button that allows for user input
+let ownWordButton = document.querySelector(".game_buttons__enter");
+let wordForm = document.querySelector(".word_form");
+let submitWord = document.querySelector(".submit_word");
+ownWordButton.addEventListener("click", displayInput);
+function displayInput(e) {
+  e.preventDefault();
+  wordForm.classList.toggle("word_form_toggle");
+}
+let userInput = document.querySelector(".input_word");
+wordForm.addEventListener("submit", setWord);
+function setWord(e) {
+  e.preventDefault();
+  let str = userInput.value;
+  inputWord.push(...str.split(""));
+  shootBlanks();
+}
+
 // Step 1 - Have user choose between playing against (A) dictionary API or (B) inputting their one word
 // If (A) - fetch random word from dictionary API and plug it into the inputWord array (after splitting into string)
 // If (B) - build function to take in input from prompt and push it into the inputWord array
