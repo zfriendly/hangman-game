@@ -105,3 +105,10 @@ body {
 :root {
   height: 100%;
 }
+
+.blank_style {
+  border-bottom: 2px solid black;
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+}
