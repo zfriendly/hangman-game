@@ -1,10 +1,11 @@
-/* * {
+* {
   border: 1px dotted blue;
-} */
+}
 
 .game__title {
   display: flex;
   justify-content: center;
+  padding-bottom: 30px;
 }
 h1 {
   font-size: 40px;
@@ -14,8 +15,8 @@ h1 {
 }
 .game__container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr;
+  grid-template-columns: 0.5fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 5px solid black;
 }
 
@@ -29,31 +30,35 @@ h1 {
   height: 70%;
   width: auto;
 }
-.empty {
-  grid-column: 2;
-  grid-row: 1;
-}
+
 .wrong__letters {
   grid-column: 3;
   grid-row: 1;
+  border: 1px solid #fbdb79;
 }
 .word__box {
-  grid-column: 2 / 4;
-  grid-row: 2;
-}
-.game_buttons__container {
-  grid-column: 1;
-  grid-row: 3;
+  grid-column: 2;
+  grid-row: 1;
+  border: 1px solid #fbdb79;
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+}
+.game_buttons__container {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   align-items: flex-start;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 .guess__container {
-  grid-column: 2 / 4;
-  grid-row: 3;
-  display: flex;
+  grid-column: 2;
+  grid-row: 2;
+
   justify-content: center;
-  align-items: flex-start;
 }
 
 body {
@@ -73,4 +78,14 @@ body {
 
 .guess__letter__button {
   border-radius: 0px;
+}
+
+.guess__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+}
+.empty {
+  grid-column: 3;
+  grid-row: 2;
 }
