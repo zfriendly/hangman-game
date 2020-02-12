@@ -67,8 +67,41 @@ wordForm.addEventListener("submit", setWord);
 function setWord(e) {
   e.preventDefault();
   let str = userInput.value;
+  str = str.toUpperCase();
   inputWord.push(...str.split(""));
+
   shootBlanks();
+  wordForm.classList.toggle("word_form_toggle");
+  userInput.value = "";
+}
+
+//Function for getting the random word from the API
+let randomWordButton = document.querySelector(".game_buttons__random");
+let apiURL = "https://random-word-api.herokuapp.com/word?key=BQXNQPFC&number=1";
+randomWordButton.addEventListener("click", apiInput);
+function apiInput(e) {
+  e.preventDefault();
+  fetch(apiURL)
+    .then(res => {
+      return res.json();
+    })
+    .then(res => {
+      let randomStr = res[0];
+      randomStr = randomStr.toUpperCase();
+      inputWord.push(...randomStr.split(""));
+      shootBlanks();
+    });
+}
+
+//Function for resetting game
+let resetButton = document.querySelector(".game_buttons__reset");
+resetButton.addEventListener("click", resetGame);
+function resetGame(evt) {
+  evt.preventDefault();
+  userInput.value = "";
+  wrongLetters = [];
+  guess = [];
+  inputWord = [];
 }
 
 // Step 1 - Have user choose between playing against (A) dictionary API or (B) inputting their one word
