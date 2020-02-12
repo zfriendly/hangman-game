@@ -30,11 +30,12 @@ const alphabet = [
   "Y",
   "Z"
 ];
+let letter;
 //For loop for making the keyboard
 let wordBox = document.querySelector(".word__box");
 let keyboard = document.querySelector(".keyboard");
 for (i = 0; i < alphabet.length; i++) {
-  let letter = document.createElement("div");
+  letter = document.createElement("div");
   letter.classList.add("letter");
   letter.innerText = alphabet[i];
   letter.addEventListener("click", guessLetter);
@@ -43,14 +44,36 @@ for (i = 0; i < alphabet.length; i++) {
 //Function for clicking on a letter
 function guessLetter(evt) {
   evt.preventDefault();
-  guess.push(evt.target.innerText);
+  guess.unshift(evt.target.innerText);
+  checkforMatch();
 }
+
+function checkforMatch() {
+  inputWord.forEach(lttr => {
+    if (guess[0] === lttr) {
+      hiddenLetters.forEach(nodeLetter => {
+        if (nodeLetter.innerText === guess[0]) {
+          nodeLetter.classList.add("display_word");
+          //   style.background = "green";
+        }
+      });
+    } else if (guess[0] !== lttr) {
+      wrongLetters.push(guess[0]);
+      letter.classList.add("letter_no");
+    }
+  });
+}
+let hiddenLetters;
 //For loop for creating the blanks for the entered word
 function shootBlanks() {
   for (i = 0; i < inputWord.length; i++) {
     let blankLetter = document.createElement("div");
     blankLetter.classList.add("blank_style");
     wordBox.appendChild(blankLetter);
+  }
+  hiddenLetters = document.querySelectorAll(".blank_style");
+  for (j = 0; j < inputWord.length; j++) {
+    hiddenLetters[j].innerText = inputWord[j];
   }
 }
 //Button that allows for user input
@@ -103,6 +126,8 @@ function resetGame(evt) {
   guess = [];
   inputWord = [];
 }
+
+//
 
 // Step 1 - Have user choose between playing against (A) dictionary API or (B) inputting their one word
 // If (A) - fetch random word from dictionary API and plug it into the inputWord array (after splitting into string)
