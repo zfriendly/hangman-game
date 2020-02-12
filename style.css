@@ -17,7 +17,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-gap: 5px solid black;
+  grid-gap: 5px;
   height: 100%;
 }
 
@@ -146,10 +146,60 @@ body {
   display: block;
 }
 
-@media only screen and (max-width: 600px) {
+.bottom {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  color: white;
+  height: 50px;
+  background: #42091a;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: none;
+}
+a {
+  color: white;
+}
+
+@media only screen and (max-width: 700px) {
   body,
   .game__container {
     display: flex;
+    text-align: center;
     flex-direction: column;
+  }
+  .keyboard {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 75px 100px 50px 100px;
+  }
+  .blank_style {
+    border-bottom: 2px solid black;
+    margin: 4px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-size: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .display_word {
+    font-size: 14px;
+    margin: 1px;
+    width: 10px;
+  }
+  .bottom {
+    display: none;
   }
 }
