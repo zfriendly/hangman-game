@@ -1,7 +1,17 @@
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
-let imagesArr = [];
+let imagesArr = [
+  "images/hm_0.png",
+  "images/hm_1.png",
+  "images/hm_2.png",
+  "images/hm_3.png",
+  "images/hm_4.png",
+  "images/hm_5.png",
+  "images/hm_6.png",
+  "images/hm_7.png",
+  "images/hm_8.png"
+];
 let correctLetters = [];
 const alphabet = [
   "A",
@@ -32,45 +42,57 @@ const alphabet = [
   "Z"
 ];
 let letter;
-//For loop for making the keyboard
+let counter = 0;
+let imageLoop = document.querySelector("#hm__images");
+imageLoop.setAttribute("src", imagesArr[counter]);
+
+// For loop for making the keyboard
+// function createKeyboard() {
 let wordBox = document.querySelector(".word__box");
 let keyboard = document.querySelector(".keyboard");
 for (i = 0; i < alphabet.length; i++) {
   letter = document.createElement("div");
   letter.classList.add("letter");
   letter.innerText = alphabet[i];
+  letter.setAttribute("data-letter", alphabet[i]);
   letter.addEventListener("click", guessLetter);
   keyboard.appendChild(letter);
 }
-//Function for clicking on a letter
+// }
 function guessLetter(evt) {
   evt.preventDefault();
+  console.log(evt.target.innerText);
   guess.unshift(evt.target.innerText);
-  checkforMatch();
+  checkforMatch(evt.target.innerText);
 }
-
-function checkforMatch() {
-  inputWord.forEach(lttr => {
-    if (guess[0] === lttr) {
-      hiddenLetters.forEach(nodeLetter => {
-        if (nodeLetter.innerText === guess[0]) {
-          nodeLetter.classList.add("display_word");
-          correctLetters.push(lttr);
-          //   style.background = "green";
-        }
-      });
-    } else if (guess[0] !== lttr) {
-      wrongLetters.push(guess[0]);
-      //   letter.classList.add("letter_no");
-    }
-    if (correctLetters.length == inputWord.length) {
-      alert("You Won!");
+function checkforMatch(f) {
+  if (counter == 7) {
+    alert(`You Lost!, the correct word was ${inputWord.join("")}`);
+  }
+  if (inputWord.indexOf(f) === -1) {
+    console.log("incorrect");
+    wrongLetters.push(f);
+    counter++;
+    imageLoop.setAttribute("src", imagesArr[counter]);
+    document
+      .querySelector("[data-letter=" + f + "]")
+      .classList.add("letter_no");
+    return;
+  }
+  console.log("correct letter");
+  document.querySelector("[data-letter=" + f + "]").classList.add("letter_yes");
+  addLetters(f);
+}
+function addLetters(f) {
+  hiddenLetters.forEach(nodeLetter => {
+    if (nodeLetter.innerText === f) {
+      nodeLetter.classList.add("display_word");
     }
   });
 }
-let hiddenLetters;
 //For loop for creating the blanks for the entered word
 function shootBlanks() {
+  wordBox.innerHTML = "";
   for (i = 0; i < inputWord.length; i++) {
     let blankLetter = document.createElement("div");
     blankLetter.classList.add("blank_style");
@@ -125,6 +147,7 @@ function apiInput(e) {
 let resetButton = document.querySelector(".game_buttons__reset");
 resetButton.addEventListener("click", resetGame);
 function resetGame(evt) {
+  wordBox.innerHTML = "";
   evt.preventDefault();
   userInput.value = "";
   wrongLetters = [];
@@ -148,3 +171,32 @@ function resetGame(evt) {
 // If word is guessed, have a winner overlay appear, and display the dancing hangman
 // If word isn't guessed, have a loser overlay appear, and display the dead hangman
 // Step 5 - Reset Button
+
+// }
+//Function for clicking on a letter
+// function guessLetter(evt) {
+//   evt.preventDefault();
+//   guess.unshift(evt.target.innerText);
+//   checkforMatch();
+// }
+// let counter = 0;
+// function checkforMatch() {
+//   inputWord.forEach(lttr => {
+//     if (guess[0] === lttr) {
+//       hiddenLetters.forEach(nodeLetter => {
+//         if (nodeLetter.innerText === guess[0]) {
+//           nodeLetter.classList.add("display_word");
+//           counter++;
+//           //   style.background = "green";
+//         }
+//       });
+//     } else if (guess[0] !== lttr) {
+//       wrongLetters.push(guess[0]);
+//       //   letter.classList.add("letter_no");
+//     }
+//     if (counter == inputWord.length) {
+//       alert("You Won!");
+//     }
+//   });
+// }
+// let hiddenLetters;
