@@ -1,3 +1,9 @@
+let ownWordButton = document.querySelector(".game_buttons__enter");
+let wordForm = document.querySelector(".word_form");
+let submitWord = document.querySelector(".submit_word");
+let userInput = document.querySelector(".input_word");
+let wordBox = document.querySelector(".word__box");
+let keyboard = document.querySelector(".keyboard");
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
@@ -10,7 +16,7 @@ let imagesArr = [
   "images/hm_5.png",
   "images/hm_6.png",
   "images/hm_7.png",
-  "images/hm_8.png"
+  "images/hm_dead.gif"
 ];
 let correctLetters = [];
 const alphabet = [
@@ -43,22 +49,27 @@ const alphabet = [
 ];
 let letter;
 let counter = 0;
+let correctCounter = 0;
 let imageLoop = document.querySelector("#hm__images");
-imageLoop.setAttribute("src", imagesArr[counter]);
 
 // For loop for making the keyboard
-// function createKeyboard() {
-let wordBox = document.querySelector(".word__box");
-let keyboard = document.querySelector(".keyboard");
-for (i = 0; i < alphabet.length; i++) {
-  letter = document.createElement("div");
-  letter.classList.add("letter");
-  letter.innerText = alphabet[i];
-  letter.setAttribute("data-letter", alphabet[i]);
-  letter.addEventListener("click", guessLetter);
-  keyboard.appendChild(letter);
+function createKeyboard() {
+  for (i = 0; i < alphabet.length; i++) {
+    letter = document.createElement("div");
+    letter.classList.add("letter");
+    letter.innerText = alphabet[i];
+    letter.setAttribute("data-letter", alphabet[i]);
+    letter.addEventListener("click", guessLetter);
+    keyboard.appendChild(letter);
+    imageLoop.setAttribute("src", imagesArr[counter]);
+  }
+
+  ownWordButton.addEventListener("click", displayInput);
+
+  wordForm.addEventListener("submit", setWord);
 }
-// }
+createKeyboard();
+
 function guessLetter(evt) {
   evt.preventDefault();
   console.log(evt.target.innerText);
@@ -66,9 +77,6 @@ function guessLetter(evt) {
   checkforMatch(evt.target.innerText);
 }
 function checkforMatch(f) {
-  if (counter == 7) {
-    alert(`You Lost!, the correct word was ${inputWord.join("")}`);
-  }
   if (inputWord.indexOf(f) === -1) {
     console.log("incorrect");
     wrongLetters.push(f);
@@ -77,6 +85,9 @@ function checkforMatch(f) {
     document
       .querySelector("[data-letter=" + f + "]")
       .classList.add("letter_no");
+    if (counter === 8) {
+      console.log(`You Lost!, the correct word was ${inputWord.join("")}`);
+    }
     return;
   }
   console.log("correct letter");
@@ -86,13 +97,17 @@ function checkforMatch(f) {
 function addLetters(f) {
   hiddenLetters.forEach(nodeLetter => {
     if (nodeLetter.innerText === f) {
+      correctCounter++;
       nodeLetter.classList.add("display_word");
+    }
+    if (correctCounter === inputWord.length) {
+      console.log(`You Won!, the correct word was ${inputWord.join("")}`);
+      imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
   });
 }
 //For loop for creating the blanks for the entered word
 function shootBlanks() {
-  wordBox.innerHTML = "";
   for (i = 0; i < inputWord.length; i++) {
     let blankLetter = document.createElement("div");
     blankLetter.classList.add("blank_style");
@@ -104,22 +119,17 @@ function shootBlanks() {
   }
 }
 //Button that allows for user input
-let ownWordButton = document.querySelector(".game_buttons__enter");
-let wordForm = document.querySelector(".word_form");
-let submitWord = document.querySelector(".submit_word");
-ownWordButton.addEventListener("click", displayInput);
+
 function displayInput(e) {
   e.preventDefault();
   wordForm.classList.toggle("word_form_toggle");
 }
-let userInput = document.querySelector(".input_word");
-wordForm.addEventListener("submit", setWord);
+
 function setWord(e) {
   e.preventDefault();
   let str = userInput.value;
   str = str.toUpperCase();
   inputWord.push(...str.split(""));
-
   shootBlanks();
   wordForm.classList.toggle("word_form_toggle");
   userInput.value = "";
@@ -147,12 +157,21 @@ function apiInput(e) {
 let resetButton = document.querySelector(".game_buttons__reset");
 resetButton.addEventListener("click", resetGame);
 function resetGame(evt) {
-  wordBox.innerHTML = "";
   evt.preventDefault();
   userInput.value = "";
   wrongLetters = [];
   guess = [];
   inputWord = [];
+  counter = 0;
+
+  correctCounter = 0;
+  while (keyboard.firstChild) {
+    keyboard.removeChild(keyboard.firstChild);
+  }
+  while (wordBox.firstChild) {
+    wordBox.removeChild(wordBox.firstChild);
+  }
+  createKeyboard();
 }
 
 //

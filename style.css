@@ -145,3 +145,11 @@ body {
 .word_form_toggle {
   display: block;
 }
+
+@media only screen and (max-width: 600px) {
+  body,
+  .game__container {
+    display: flex;
+    flex-direction: column;
+  }
+}
