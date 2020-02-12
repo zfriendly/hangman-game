@@ -2,6 +2,7 @@ let wrongLetters = [];
 let guess = [];
 let inputWord = [];
 let imagesArr = [];
+let correctLetters = [];
 const alphabet = [
   "A",
   "B",
@@ -54,12 +55,16 @@ function checkforMatch() {
       hiddenLetters.forEach(nodeLetter => {
         if (nodeLetter.innerText === guess[0]) {
           nodeLetter.classList.add("display_word");
+          correctLetters.push(lttr);
           //   style.background = "green";
         }
       });
     } else if (guess[0] !== lttr) {
       wrongLetters.push(guess[0]);
-      letter.classList.add("letter_no");
+      //   letter.classList.add("letter_no");
+    }
+    if (correctLetters.length == inputWord.length) {
+      alert("You Won!");
     }
   });
 }
