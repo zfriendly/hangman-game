@@ -213,23 +213,28 @@ a {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-}
-.modal_box_toggle {
-  display: block;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
+.modal__content {
+  background-color: #fbdb79;
+  margin: 40% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
+  color: black;
+  font-size: 40px;
+  text-align: center;
+  opacity: 0.9;
 }
-/* .close {
-  color: #aaa;
+.close {
+  color: white;
   float: right;
-  font-size: 28px;
+  font-size: 45px;
   font-weight: bold;
+  right: 0;
+  top: 0;
 }
 
 .close:hover,
@@ -237,7 +242,7 @@ a {
   color: black;
   text-decoration: none;
   cursor: pointer;
-} */
+}
 
 @media only screen and (max-width: 950) {
   .keyboard {
@@ -258,7 +263,9 @@ a {
     display: flex;
     text-align: center;
     flex-direction: column;
+    box-sizing: content-box;
   }
+
   .keyboard {
     grid-column: 2 / 4;
     grid-row: 2;

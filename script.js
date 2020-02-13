@@ -1,3 +1,9 @@
+let modalBox;
+window.onload = function() {
+  modalBox = document.querySelector(".modal_box");
+  modalBox.addEventListener("click", closeModal);
+};
+
 let ownWordButton = document.querySelector(".game_buttons__enter");
 let wordForm = document.querySelector(".word_form");
 let submitWord = document.querySelector(".submit_word");
@@ -67,7 +73,6 @@ function createKeyboard() {
     keyboard.appendChild(letter);
     imageLoop.setAttribute("src", imagesArr[counter]);
   }
-
   ownWordButton.addEventListener("click", displayInput);
   musicButton.addEventListener("click", displayMusic);
   wordForm.addEventListener("submit", setWord);
@@ -94,13 +99,10 @@ function checkforMatch(f) {
       .querySelector("[data-letter=" + f + "]")
       .classList.add("letter_no");
     if (counter === 8) {
-      let modalBox = document.querySelector(".modal_box");
       let modalText = document.querySelector(".modal__text");
       let fullWord = inputWord.join("");
-      modalBox.style.display = "block";
+      modalBox.style.display = "flex";
       modalText.innerText = `You Lost!, the correct word was ${fullWord}`;
-      console.log(`You Lost!, the correct word was ${inputWord.join("")}`);
-      console.dir(modalBox);
     }
     return;
   }
@@ -115,11 +117,10 @@ function addLetters(f) {
       nodeLetter.classList.add("display_word");
     }
     if (correctCounter === inputWord.length) {
-      let modalBox = document.querySelector(".modal_box");
       let modalText = document.querySelector(".modal__text");
       let fullWord = inputWord.join("");
-      modalBox.style.display = "block";
-      modalText.innerText = `You WON!!!, the correct word was ${fullWord}`;
+      modalBox.style.display = "flex";
+      modalText.innerText = `You Won!!, the correct word was ${fullWord}`;
       imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
   });
@@ -198,6 +199,21 @@ function resetGame(evt) {
   }
   createKeyboard();
 }
+
+function closeModal(evt) {
+  modalBox.style.display = "none";
+  resetGame(evt);
+}
+
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
+
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 
 //
 
