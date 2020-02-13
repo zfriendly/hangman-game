@@ -4,6 +4,9 @@ let submitWord = document.querySelector(".submit_word");
 let userInput = document.querySelector(".input_word");
 let wordBox = document.querySelector(".word__box");
 let keyboard = document.querySelector(".keyboard");
+let modal = document.querySelector(".modal");
+let modalText = document.querySelector(".modal__text");
+let guessCounter = document.querySelector(".wrong_counter");
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
@@ -50,6 +53,7 @@ const alphabet = [
 let letter;
 let counter = 0;
 let correctCounter = 0;
+let guessesLeft = 8;
 let imageLoop = document.querySelector("#hm__images");
 
 // For loop for making the keyboard
@@ -81,11 +85,15 @@ function checkforMatch(f) {
     console.log("incorrect");
     wrongLetters.push(f);
     counter++;
+    guessesLeft--;
+    guessCounter.innerText = `Guesses Left: ${guessesLeft}`;
     imageLoop.setAttribute("src", imagesArr[counter]);
     document
       .querySelector("[data-letter=" + f + "]")
       .classList.add("letter_no");
     if (counter === 8) {
+      modal.style.display = "block";
+      modalText.innerText = "You Lost!, the correct word was";
       console.log(`You Lost!, the correct word was ${inputWord.join("")}`);
     }
     return;
@@ -137,7 +145,7 @@ function setWord(e) {
 
 //Function for getting the random word from the API
 let randomWordButton = document.querySelector(".game_buttons__random");
-let apiURL = "https://random-word-api.herokuapp.com/word?key=BQXNQPFC&number=1";
+let apiURL = "https://random-word-api.herokuapp.com/word?key=O19BDO5A&number=1";
 randomWordButton.addEventListener("click", apiInput);
 function apiInput(e) {
   e.preventDefault();
@@ -163,8 +171,9 @@ function resetGame(evt) {
   guess = [];
   inputWord = [];
   counter = 0;
-
+  guessesLeft = 8;
   correctCounter = 0;
+  guessCounter.innerText = "Guesses Left: 8";
   while (keyboard.firstChild) {
     keyboard.removeChild(keyboard.firstChild);
   }

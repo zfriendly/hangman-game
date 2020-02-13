@@ -9,12 +9,16 @@
       href="https://fonts.googleapis.com/css?family=Rye&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
     <title>Hangman Game</title>
   </head>
   <body>
     <div class="game__title"><h1>Welcome to Hangman!</h1></div>
+    
     <div class="game__container">
       <div class="image__container">
+        <div class="wrong_counter">Guesses Left: 8</div>
         <img id="hm__images" src="" alt="hangman" />
       </div>
 
@@ -49,5 +53,11 @@
       </div>
     </div>
     <script src="script.js"></script>
+
+  </div>
+  <div class="modal">
+    <div class="modal__content">
+      <span class="close">&times;</span>
+      <p class="modal__text"></p>
   </body>
 </html>
