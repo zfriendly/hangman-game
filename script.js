@@ -4,8 +4,6 @@ let submitWord = document.querySelector(".submit_word");
 let userInput = document.querySelector(".input_word");
 let wordBox = document.querySelector(".word__box");
 let keyboard = document.querySelector(".keyboard");
-let modal = document.querySelector(".modal");
-let modalText = document.querySelector(".modal__text");
 let guessCounter = document.querySelector(".wrong_counter");
 let musicButton = document.querySelector(".game_buttons__music");
 let musicPlayer = document.querySelector(".music");
@@ -82,6 +80,8 @@ function guessLetter(evt) {
   guess.unshift(evt.target.innerText);
   checkforMatch(evt.target.innerText);
 }
+
+//Function for checking to see if the letters are correct or incorrect
 function checkforMatch(f) {
   if (inputWord.indexOf(f) === -1) {
     console.log("incorrect");
@@ -94,11 +94,13 @@ function checkforMatch(f) {
       .querySelector("[data-letter=" + f + "]")
       .classList.add("letter_no");
     if (counter === 8) {
-      modal.classList.toggle("modal_toggle");
-      modalText.innerText = `You Lost!, the correct word was ${inputWord.join(
-        ""
-      )}`;
+      let modalBox = document.querySelector(".modal_box");
+      let modalText = document.querySelector(".modal__text");
+      let fullWord = inputWord.join("");
+      modalBox.style.display = "block";
+      modalText.innerText = `You Lost!, the correct word was ${fullWord}`;
       console.log(`You Lost!, the correct word was ${inputWord.join("")}`);
+      console.dir(modalBox);
     }
     return;
   }
@@ -113,10 +115,11 @@ function addLetters(f) {
       nodeLetter.classList.add("display_word");
     }
     if (correctCounter === inputWord.length) {
-      //   modal.style.display = "block";
-      //   modalText.innerText = `You Lost!, the correct word was ${inputWord.join(
-      //     ""
-      //   )}`;
+      let modalBox = document.querySelector(".modal_box");
+      let modalText = document.querySelector(".modal__text");
+      let fullWord = inputWord.join("");
+      modalBox.style.display = "block";
+      modalText.innerText = `You WON!!!, the correct word was ${fullWord}`;
       imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
   });
