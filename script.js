@@ -88,6 +88,11 @@ function guessLetter(evt) {
 
 //Function for checking to see if the letters are correct or incorrect
 function checkforMatch(f) {
+  if (inputWord.length === 0) {
+    let modalText = document.querySelector(".modal__text");
+    modalBox.style.display = "flex";
+    modalText.innerText = `Pick a word first!`;
+  }
   if (inputWord.indexOf(f) === -1) {
     console.log("incorrect");
     wrongLetters.push(f);
@@ -151,6 +156,11 @@ function displayInput(e) {
 }
 
 function setWord(e) {
+  if (inputWord.length > 0) {
+    let modalText = document.querySelector(".modal__text");
+    modalBox.style.display = "flex";
+    modalText.innerText = `You already picked a word! Let's start over.`;
+  }
   e.preventDefault();
   let str = userInput.value;
   str = str.toUpperCase();
@@ -165,6 +175,11 @@ let randomWordButton = document.querySelector(".game_buttons__random");
 let apiURL = "https://random-word-api.herokuapp.com/word?key=HF0N4GRU&number=1";
 randomWordButton.addEventListener("click", apiInput);
 function apiInput(e) {
+  if (inputWord.length > 0) {
+    let modalText = document.querySelector(".modal__text");
+    modalBox.style.display = "flex";
+    modalText.innerText = `You already picked a word! Let's start over.`;
+  }
   e.preventDefault();
   fetch(apiURL)
     .then(res => {
