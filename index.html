@@ -14,8 +14,7 @@
     <title>Hangman Game</title>
   </head>
   <body>
-    <div class="game__title"><h1>Welcome to Hangman!</h1></div>
-    
+    <div class="game__title"><h1>Wild West Hangman!</h1></div>
     <div class="game__container">
       <div class="image__container">
         <div class="wrong_counter">Guesses Left: 8</div>
@@ -37,6 +36,12 @@
         <button class="submit_word">Submit</button>
       </form>
       <button class="game_buttons game_buttons__reset">Restart Game</button>
+      <button class="game_buttons game_buttons__music">Are You Feeling Lucky, Punk?</button>
+
+      <audio class="game_buttons music" controls>
+        <source src="images/music.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+      </audio>
     </div>
     <div class="bottom">
       <div class="bottom__signature">
@@ -55,9 +60,12 @@
     <script src="script.js"></script>
 
   </div>
+  <div class="modal__container">
   <div class="modal">
     <div class="modal__content">
       <span class="close">&times;</span>
       <p class="modal__text"></p>
+      </div>
+    </div>
   </body>
 </html>

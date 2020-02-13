@@ -7,6 +7,8 @@ let keyboard = document.querySelector(".keyboard");
 let modal = document.querySelector(".modal");
 let modalText = document.querySelector(".modal__text");
 let guessCounter = document.querySelector(".wrong_counter");
+let musicButton = document.querySelector(".game_buttons__music");
+let musicPlayer = document.querySelector(".music");
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
@@ -69,7 +71,7 @@ function createKeyboard() {
   }
 
   ownWordButton.addEventListener("click", displayInput);
-
+  musicButton.addEventListener("click", displayMusic);
   wordForm.addEventListener("submit", setWord);
 }
 createKeyboard();
@@ -92,8 +94,10 @@ function checkforMatch(f) {
       .querySelector("[data-letter=" + f + "]")
       .classList.add("letter_no");
     if (counter === 8) {
-      modal.style.display = "block";
-      modalText.innerText = "You Lost!, the correct word was";
+      modal.classList.toggle("modal_toggle");
+      modalText.innerText = `You Lost!, the correct word was ${inputWord.join(
+        ""
+      )}`;
       console.log(`You Lost!, the correct word was ${inputWord.join("")}`);
     }
     return;
@@ -109,7 +113,10 @@ function addLetters(f) {
       nodeLetter.classList.add("display_word");
     }
     if (correctCounter === inputWord.length) {
-      console.log(`You Won!, the correct word was ${inputWord.join("")}`);
+      //   modal.style.display = "block";
+      //   modalText.innerText = `You Lost!, the correct word was ${inputWord.join(
+      //     ""
+      //   )}`;
       imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
   });
@@ -125,6 +132,12 @@ function shootBlanks() {
   for (j = 0; j < inputWord.length; j++) {
     hiddenLetters[j].innerText = inputWord[j];
   }
+}
+
+//Music Button
+function displayMusic(e) {
+  e.preventDefault();
+  musicPlayer.classList.toggle("music_toggle");
 }
 //Button that allows for user input
 
@@ -145,7 +158,7 @@ function setWord(e) {
 
 //Function for getting the random word from the API
 let randomWordButton = document.querySelector(".game_buttons__random");
-let apiURL = "https://random-word-api.herokuapp.com/word?key=O19BDO5A&number=1";
+let apiURL = "https://random-word-api.herokuapp.com/word?key=HF0N4GRU&number=1";
 randomWordButton.addEventListener("click", apiInput);
 function apiInput(e) {
   e.preventDefault();
