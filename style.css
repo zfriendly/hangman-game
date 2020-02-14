@@ -355,4 +355,10 @@ a {
   .bottom {
     display: none;
   }
+  .image__container {
+    align-items: flex-start;
+  }
+  .wrong_counter {
+    margin-top: 10px;
+  }
 }
