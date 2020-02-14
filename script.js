@@ -146,7 +146,7 @@ function shootBlanks() {
 //Music Button
 function displayMusic(e) {
   e.preventDefault();
-  musicPlayer.classList.toggle("music_toggle");
+  musicPlayer.play();
 }
 //Button that allows for user input
 

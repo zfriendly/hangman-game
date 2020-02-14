@@ -90,6 +90,7 @@ h1 {
   text-align: center;
   cursor: pointer;
   opacity: 0.85;
+  cursor: url(images/gun.cur), auto;
 }
 
 .letter:hover {
@@ -97,7 +98,7 @@ h1 {
   background-color: #fbdb79;
 }
 .letter_yes {
-  background-color: #07da63;
+  background: url(images/cactus.png);
   opacity: 0.85;
 }
 .letter_no {
@@ -122,6 +123,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .game_buttons {
   font-size: 25px;
