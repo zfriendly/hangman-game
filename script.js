@@ -110,7 +110,7 @@ function checkforMatch(f) {
       let modalText = document.querySelector(".modal__text");
       let fullWord = inputWord.join("");
       modalBox.style.display = "flex";
-      modalText.innerText = `You Lost!, the correct word was ${fullWord}`;
+      modalText.innerText = `You Lost! The correct word was ${fullWord}`;
     }
     return;
   }
@@ -131,7 +131,7 @@ function addLetters(f) {
       modalBox.style.display = "flex";
       //   score++;
       //   totalScore.innerHTML
-      modalText.innerText = `You Won!!, the correct word was ${fullWord}`;
+      modalText.innerText = `You Won!!! The correct word was ${fullWord}`;
       imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
   });
