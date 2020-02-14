@@ -40,7 +40,6 @@ h1 {
   grid-template-rows: 1fr 1fr;
   grid-gap: 5px;
   height: 100%;
-  cursor: url(images/gun.cur), auto;
 }
 
 .image__container {
@@ -93,6 +92,10 @@ h1 {
   opacity: 0.85;
   cursor: url(images/gun.cur), auto;
 }
+.letter:active {
+  /* cursor: url(images/gunactive.cur), auto; */
+  cursor: url(images/bang.cur), auto;
+}
 
 .letter:hover {
   font-size: 45px;
@@ -118,7 +121,6 @@ body {
   background-size: cover;
   background-position: bottom;
   font-family: "Rye", cursive;
-  cursor: url(images/gun.cur), auto;
 }
 .game_buttons__container {
   display: flex;
@@ -246,7 +248,6 @@ a {
   transform: rotate(360deg);
   transition-duration: 1s;
   /* transform: translate(1000px) */
-} */
 
 /* .close {
   color: white;

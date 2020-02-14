@@ -179,7 +179,7 @@ function setWord(e) {
 
 //Function for getting the random word from the API
 let randomWordButton = document.querySelector(".game_buttons__random");
-let apiURL = "https://random-word-api.herokuapp.com/word?key=HF0N4GRU&number=1";
+let apiURL = "https://random-word-api.herokuapp.com/word?key=XSLY7SP3&number=1";
 randomWordButton.addEventListener("click", apiInput);
 function apiInput(e) {
   if (inputWord.length > 0) {
