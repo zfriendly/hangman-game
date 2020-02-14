@@ -109,8 +109,8 @@ h1 {
 .music {
   display: none;
 }
-.music_toggle {
-  display: block;
+.gunshot {
+  display: none;
 }
 
 body {
@@ -236,6 +236,18 @@ a {
   text-decoration: underline;
   text-decoration-color: #9b3131;
 }
+/* .tumbleweed {
+  position: absolute;
+  left: -20%;
+  display: none;
+} */
+/* .tumbleweed_animation {
+  display: flex;
+  transform: rotate(360deg);
+  transition-duration: 1s;
+  /* transform: translate(1000px) */
+} */
+
 /* .close {
   color: white;
   float: right;

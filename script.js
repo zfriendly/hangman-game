@@ -153,6 +153,7 @@ function shootBlanks() {
 function displayMusic(e) {
   e.preventDefault();
   musicPlayer.play();
+  //   tumble();
 }
 //Button that allows for user input
 
@@ -225,6 +226,11 @@ function closeModal(evt) {
   modalBox.style.display = "none";
   resetGame(evt);
 }
+
+// function tumble() {
+//   var tumbleweed = document.querySelector(".tumbleweed");
+//   tumbleweed.classList.toggle("tumbleweed_animation");
+// }
 
 // Check browser support
 
