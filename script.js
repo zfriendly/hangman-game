@@ -3,7 +3,7 @@ window.onload = function() {
   modalBox = document.querySelector(".modal_box");
   modalBox.addEventListener("click", closeModal);
 };
-
+// let score;
 let ownWordButton = document.querySelector(".game_buttons__enter");
 let wordForm = document.querySelector(".word_form");
 let submitWord = document.querySelector(".submit_word");
@@ -13,6 +13,8 @@ let keyboard = document.querySelector(".keyboard");
 let guessCounter = document.querySelector(".wrong_counter");
 let musicButton = document.querySelector(".game_buttons__music");
 let musicPlayer = document.querySelector(".music");
+let gunshot = document.querySelector(".gunshot");
+// let totalScore = document.querySelector(".total_score");
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
@@ -95,6 +97,7 @@ function checkforMatch(f) {
   }
   if (inputWord.indexOf(f) === -1) {
     console.log("incorrect");
+    gunshot.play();
     wrongLetters.push(f);
     counter++;
     guessesLeft--;
@@ -119,12 +122,15 @@ function addLetters(f) {
   hiddenLetters.forEach(nodeLetter => {
     if (nodeLetter.innerText === f) {
       correctCounter++;
+      gunshot.play();
       nodeLetter.classList.add("display_word");
     }
     if (correctCounter === inputWord.length) {
       let modalText = document.querySelector(".modal__text");
       let fullWord = inputWord.join("");
       modalBox.style.display = "flex";
+      //   score++;
+      //   totalScore.innerHTML
       modalText.innerText = `You Won!!, the correct word was ${fullWord}`;
       imageLoop.setAttribute("src", "images/hm_dancing.gif");
     }
@@ -219,6 +225,8 @@ function closeModal(evt) {
   modalBox.style.display = "none";
   resetGame(evt);
 }
+
+// Check browser support
 
 // span.onclick = function() {
 //   modal.style.display = "none";
