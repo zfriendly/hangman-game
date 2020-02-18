@@ -14,7 +14,7 @@ let guessCounter = document.querySelector(".wrong_counter");
 let musicButton = document.querySelector(".game_buttons__music");
 let musicPlayer = document.querySelector(".music");
 let gunshot = document.querySelector(".gunshot");
-// let totalScore = document.querySelector(".total_score");
+
 let wrongLetters = [];
 let guess = [];
 let inputWord = [];
@@ -179,7 +179,7 @@ function setWord(e) {
 
 //Function for getting the random word from the API
 let randomWordButton = document.querySelector(".game_buttons__random");
-let apiURL = "https://random-word-api.herokuapp.com/word?key=6FMY7FH7&number=1";
+let apiURL = "https://random-word-api.herokuapp.com/word?key=UQ27R8H3&number=1";
 randomWordButton.addEventListener("click", apiInput);
 function apiInput(e) {
   if (inputWord.length > 0) {
@@ -226,66 +226,3 @@ function closeModal(evt) {
   modalBox.style.display = "none";
   resetGame(evt);
 }
-
-// function tumble() {
-//   var tumbleweed = document.querySelector(".tumbleweed");
-//   tumbleweed.classList.toggle("tumbleweed_animation");
-// }
-
-// Check browser support
-
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-
-//
-
-// Step 1 - Have user choose between playing against (A) dictionary API or (B) inputting their one word
-// If (A) - fetch random word from dictionary API and plug it into the inputWord array (after splitting into string)
-// If (B) - build function to take in input from prompt and push it into the inputWord array
-// Step 2 - Spell out word in the guessing area, but have the text not there (just the dashes)
-// Step 3 - When the user inputs a letter and presses "Guess", push that letter into the guess array and compare it to the
-//          input word array. Use include() and indexOf() to see if they are anywhere in the array.
-// If yes - have the word appear above the dash and remove the letter from the guess array.
-// If it appears more than once - have a for loop of indexof() to check for multiple occurances.
-// If no - have the letter shift from the guess array and into the wrongLetters array, appearing on the UI
-// THEN move forward once through the array of images to add a limb to the hangman
-// Step 4 - END GAME
-// If word is guessed, have a winner overlay appear, and display the dancing hangman
-// If word isn't guessed, have a loser overlay appear, and display the dead hangman
-// Step 5 - Reset Button
-
-// }
-//Function for clicking on a letter
-// function guessLetter(evt) {
-//   evt.preventDefault();
-//   guess.unshift(evt.target.innerText);
-//   checkforMatch();
-// }
-// let counter = 0;
-// function checkforMatch() {
-//   inputWord.forEach(lttr => {
-//     if (guess[0] === lttr) {
-//       hiddenLetters.forEach(nodeLetter => {
-//         if (nodeLetter.innerText === guess[0]) {
-//           nodeLetter.classList.add("display_word");
-//           counter++;
-//           //   style.background = "green";
-//         }
-//       });
-//     } else if (guess[0] !== lttr) {
-//       wrongLetters.push(guess[0]);
-//       //   letter.classList.add("letter_no");
-//     }
-//     if (counter == inputWord.length) {
-//       alert("You Won!");
-//     }
-//   });
-// }
-// let hiddenLetters;
